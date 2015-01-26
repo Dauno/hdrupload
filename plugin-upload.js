@@ -1,7 +1,7 @@
 /*
 	HDRUpload v0.0.1
 	Updated: enero 21, 2015
-	Author: dguajardo
+	Author: Dauno Martínez
 	Usage: 
 	$('#content').hdrupload({
         messageDropArea: '#content',
