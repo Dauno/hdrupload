@@ -1,0 +1,25 @@
+{
+  "name": "hdr-upload",
+  "main": "hdr-upload.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Dauno/hdrupload",
+  "authors": [
+    "Dauno Marcelo <dauno.marcelo@gmail.com>"
+  ],
+  "description": "Plugin upload eClass",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "jquery-form": "~3.46.0"
+  }
+}
