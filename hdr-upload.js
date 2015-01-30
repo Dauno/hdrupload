@@ -101,6 +101,7 @@
 		messageError: '',
 		urlUploadFile: '',
 		progressBar: '',
+		thumbs: false,
 		classes: {
 			dragOver: '',
 			dragDrop: ''
