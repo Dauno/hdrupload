@@ -161,6 +161,7 @@
 			return {
 				run: function() {
 					this.filetype = this.opts.filetype;
+					this.thumbs = this.opts.thumbs;
 					this.$messageerror = this.build.messageError();
 					this.$progressbar = this.build.progressBar();
 					this.$messagedroparea = this.build.messageDropArea();
@@ -177,8 +178,10 @@
 				form: function() {
 					this.$form = this.build.createForm();
 					this.$inputTypeFile = this.build.createInput();
+					this.$inputThumbs = this.build.createInputThumbs();
 					this.kids = this.$element.children();
 					this.$form.append(this.$inputTypeFile);
+					this.$form.append(this.$inputThumbs);
 					this.$form.append(this.kids);
 					this.$element.append(this.$form);
 				},
@@ -208,6 +211,14 @@
 						id: 'fileType' + this.uuid,
 						value: this.filetype,
 						name: 'data[File][fileType]'
+					});
+				},
+				createInputThumbs: function() {
+					return $('<input>').attr({
+						type: 'hidden',
+						id: 'thumbs' + this.uuid,
+						value: this.thumbs,
+						name: 'data[File][thumbs]'
 					});
 				},
 				progressBar: function() {
@@ -260,6 +271,7 @@
 					var form_data = new FormData();
 					form_data.append("data[File][file]", file);
 					form_data.append("data[File][fileType]", el.filetype);
+					form_data.append("data[File][thumbs]", el.thumbs);
 					var xhr = new XMLHttpRequest();
 
 					xhr.upload.addEventListener('progress', function(e) {
