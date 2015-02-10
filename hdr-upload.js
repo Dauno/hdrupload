@@ -197,6 +197,7 @@
 				},
 				destroyForm: function() {
 					this.$inputTypeFile.remove();
+					this.$inputThumbs.remove();
 					this.$form.children('input[type=file]').attr('name', this.inputName);
 					this.kids = this.$form.children();
 					this.$element.append(this.kids);
