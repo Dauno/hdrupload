@@ -117,6 +117,7 @@
 			this.$element = $(el);
 			this.uuid = Math.floor(Math.random() * 1000000);
 			this.inputName = this.$element.children('input[type=file]').attr('name');
+			this.inputId = this.$element.children('input[type=file]').attr('id');
 			this.loadOptions(options);
 			this.loadModules();
 			// build
@@ -180,7 +181,10 @@
 					this.$form = this.build.createForm();
 					this.$inputTypeFile = this.build.createInput();
 					this.$inputThumbs = this.build.createInputThumbs();
-					this.$element.children('input[type=file]').attr('name', 'data[File][file]');
+					this.$element.children('input[type=file]').attr({
+						name: 'data[File][file]',
+						id: 'FileFile'
+					});
 					this.kids = this.$element.children();
 					this.$form.append(this.$inputTypeFile);
 					this.$form.append(this.$inputThumbs);
@@ -198,7 +202,10 @@
 				destroyForm: function() {
 					this.$inputTypeFile.remove();
 					this.$inputThumbs.remove();
-					this.$form.children('input[type=file]').attr('name', this.inputName);
+					this.$form.children('input[type=file]').attr({
+						name: this.inputName,
+						id: this.inputId
+					});
 					this.kids = this.$form.children();
 					this.$element.append(this.kids);
 					this.$form.remove();
