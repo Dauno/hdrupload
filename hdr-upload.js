@@ -267,7 +267,7 @@
 						el.$element.parent().removeClass(classes.dragOver)
 					});
 					el.$element.on('drop', function(e){
-						el.$element.parent().removeClass(el.opts.classes.loaded).addClass(el.opts.classes.loading);
+						el.$element.parent().removeClass(classes.loaded).addClass(classes.loading);
 						el.$element.parent().removeClass(classes.dragOver).addClass(classes.dragDrop);
 						if(e.originalEvent.dataTransfer){
 							if(e.originalEvent.dataTransfer.files.length) {
