@@ -241,7 +241,7 @@
 				},
 				changeForm: function(el) {
 					el.$element.on('change','input' , function() {
-						el.$element.removeClass(el.opts.classes.loaded).addClass(el.opts.classes.loading);
+						el.$element.parent().removeClass(el.opts.classes.loaded).addClass(el.opts.classes.loading);
 						el.upload.jqueryForm(el);
 					});
 				},
@@ -268,7 +268,7 @@
 					});
 					el.$element.on('drop', function(e){
 						el.$element.removeClass(el.opts.classes.loaded).addClass(el.opts.classes.loading);
-						el.$element.removeClass(classes.dragOver).addClass(classes.dragDrop);
+						el.$element.parent().removeClass(classes.dragOver).addClass(classes.dragDrop);
 						if(e.originalEvent.dataTransfer){
 							if(e.originalEvent.dataTransfer.files.length) {
 								e.preventDefault();
@@ -354,14 +354,14 @@
 					};
 					this.opts.success(this.response,this.upload.error, this.element);
 					this.$element.removeClass(this.opts.classes.dragDrop);
-					this.$element.removeClass(el.opts.classes.loading).addClass(el.opts.classes.loaded);
+					this.$element.parent().removeClass(this.opts.classes.loading).addClass(this.opts.classes.loaded);
 				},
 				error: function(el, message) {
 					el.$progressbar.html('Error');
 					setTimeout(function(){
 						el.build.progressBarPercent(0);
 						el.$element.removeClass(el.opts.classes.dragDrop);
-						el.$element.removeClass(el.opts.classes.loading).addClass(el.opts.classes.loaded);
+						el.$element.parent().removeClass(el.opts.classes.loading).addClass(el.opts.classes.loaded);
 					}, 3000);
 					if (message) {
 						el.$messageerror.html(message).delay(1000).fadeIn();
