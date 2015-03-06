@@ -361,7 +361,7 @@
 					setTimeout(function(){
 						el.build.progressBarPercent(0);
 						el.$element.removeClass(el.opts.classes.dragDrop);
-						el.$element.parent().removeClass(el.opts.classes.loading);
+						el.$element.parent().removeClass(el.opts.classes.loading).removeClass(el.opts.classes.loaded);
 					}, 3000);
 					if (message) {
 						el.$messageerror.html(message).delay(1000).fadeIn();
