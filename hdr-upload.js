@@ -358,12 +358,18 @@
 				},
 				error: function(el, message) {
 					el.$progressbar.html('Error');
-					el.$element.parent().removeClass(el.opts.classes.loading);
-					el.$element.parent().removeClass(el.opts.classes.loaded);
 					setTimeout(function(){
 						el.build.progressBarPercent(0);
 						el.$element.parent().removeClass(el.opts.classes.dragDrop);
 					}, 3000);
+					setInterval(function(){
+						if (el.$element.parent().hasClass(el.opts.classes.loading)) {
+							el.$element.parent().removeClass(el.opts.classes.loading);
+						};
+						if (el.$element.parent().hasClass(el.opts.classes.loaded)) {
+							el.$element.parent().removeClass(el.opts.classes.loaded);
+						};
+					}, 100);
 					if (message) {
 						el.$messageerror.html(message).delay(1000).fadeIn();
 					}
