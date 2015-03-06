@@ -255,7 +255,7 @@
 					el.$element.on('dragover', function(e) {
 						e.preventDefault();
 						e.stopPropagation();
-						el.$element.addClass(classes.dragOver);
+						el.$element.parent().addClass(classes.dragOver);
 					});
 					el.$element.on('dragenter', function(e) {
 						e.preventDefault();
