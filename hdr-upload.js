@@ -5,7 +5,7 @@
 	Usage: 
 	$('#content').hdrupload({
         messageDropArea: '#content',
-        messageError: '#content',
+        elementError: '#content',
         urlUploadFile: 'uploadImage.php',
         progressBar: '#content',
         classes: {
@@ -100,7 +100,8 @@
 
 	$.HDRUpload.opts = {
 		// settings
-		messageError: '',
+		elementError: '',
+		elementErrorMessage: '',
 		urlUploadFile: '',
 		progressBar: '',
 		thumbs: false,
@@ -168,7 +169,7 @@
 				run: function() {
 					this.filetype = this.opts.filetype;
 					this.thumbs = this.opts.thumbs;
-					this.$messageerror = this.build.messageError();
+					this.$elementerror = this.build.elementError();
 					this.$progressbar = this.build.progressBar();
 					this.$messagedroparea = this.build.messageDropArea();
 
@@ -214,8 +215,8 @@
 					this.$element.append(this.kids);
 					this.$form.remove();
 				},
-				messageError: function() {
-					return $(this.opts.messageError).hide();
+				elementError: function() {
+					return $(this.opts.elementError).hide();
 				},
 				messageDropArea: function() {
 					return $(this.opts.messageDropArea);
@@ -341,7 +342,7 @@
 					this.response = $.parseJSON(response);
 					this.element = {
 						$element: this.$element,
-						$messageerror: this.$messageerror,
+						$elementerror: this.$elementerror,
 						$progressbar: this.$progressbar,
 						build: {
 							progressBarPercent: this.build.progressBarPercent
@@ -361,20 +362,19 @@
 					setTimeout(function(){
 						el.build.progressBarPercent(0);
 						el.$element.parent().removeClass(el.opts.classes.dragDrop);
+						el.$element.parent().removeClass(el.opts.classes.loaded);
 					}, 3000);
 					setInterval(function(){
-						if (el.$element.parent().hasClass(el.opts.classes.loading)) {
-							el.$element.parent().removeClass(el.opts.classes.loading);
-						};
 						if (el.$element.parent().hasClass(el.opts.classes.loaded)) {
 							el.$element.parent().removeClass(el.opts.classes.loaded);
 						};
 					}, 100);
 					if (message) {
-						el.$messageerror.html(message).delay(1000).fadeIn();
+						el.$elementerror.find(this.opts.elementErrorMessage).html(message);
+						el.$elementerror.delay(1000).fadeIn();
 					}
 					else{
-						el.$messageerror.delay(1000).fadeIn();
+						el.$elementerror.delay(1000).fadeIn();
 					}
 				}
 			};
