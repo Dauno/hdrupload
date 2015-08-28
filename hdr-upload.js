@@ -2,7 +2,7 @@
 	HDRUpload v0.0.1
 	Updated: enero 21, 2015
 	Author: Dauno Martínez
-	Usage: 
+	Usage:
 	$('#content').hdrupload({
         messageDropArea: '#content',
         elementError: '#content',
@@ -78,7 +78,7 @@
 		else {
 			this.each(function() {
 				$.data(this, 'hdrupload', {});
-				$.data(this, 'hdrupload', HDRUpload(this, options));
+				$.data(this, 'hdrupload', new HDRUpload(this, options));
 			});
 		}
 
@@ -102,6 +102,7 @@
 		// settings
 		elementError: '',
 		elementErrorMessage: '',
+		contentDropAreaProgress: '',
 		urlUploadFile: '',
 		progressBar: '',
 		thumbs: false,
@@ -169,6 +170,7 @@
 				run: function() {
 					this.filetype = this.opts.filetype;
 					this.thumbs = this.opts.thumbs;
+					this.contentDropAreaProgress = this.opts.contentDropAreaProgress;
 					this.$elementerror = this.build.elementError();
 					this.$progressbar = this.build.progressBar();
 					this.$messagedroparea = this.build.messageDropArea();
@@ -247,7 +249,7 @@
 					});
 				},
 				progressBarPercent: function(percent) {
-					this.percentVal = percent + '%'
+					this.percentVal = percent + '%';
 					this.$progressbar.css('width', this.percentVal);
 					this.$progressbar.attr('aria-valuenow', percent);
 					this.$progressbar.html(this.percentVal);
@@ -265,7 +267,7 @@
 					el.$element.on('dragleave', function(e) {
 						e.preventDefault();
 						e.stopPropagation();
-						el.$element.parent().removeClass(classes.dragOver)
+						el.$element.parent().removeClass(classes.dragOver);
 					});
 					el.$element.on('drop', function(e){
 						el.$element.parent().removeClass(classes.loaded).addClass(classes.loading);
@@ -284,6 +286,7 @@
 		upload: function() {
 			return {
 				ajax: function(el, file) {
+					this.$messagedroparea.text(this.contentDropAreaProgress);
 					var action = el.core.action();
 
 					var form_data = new FormData();
@@ -318,6 +321,8 @@
 				},
 				jqueryForm: function(el) {
 					this.build.form();
+					this.$messagedroparea.text(this.contentDropAreaProgress);
+
 					this.$form.ajaxForm({
 						beforeSend: function() {
 							el.build.progressBarPercent(0);
@@ -344,6 +349,7 @@
 						$element: this.$element,
 						$elementerror: this.$elementerror,
 						$progressbar: this.$progressbar,
+						$messagedroparea: this.$messagedroparea,
 						build: {
 							progressBarPercent: this.build.progressBarPercent
 						},
@@ -367,7 +373,7 @@
 					setInterval(function(){
 						if (el.$element.parent().hasClass(el.opts.classes.loaded)) {
 							el.$element.parent().removeClass(el.opts.classes.loaded);
-						};
+						}
 					}, 100);
 					if (message) {
 						el.$elementerror.find(this.opts.elementErrorMessage).html(message);
