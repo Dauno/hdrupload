@@ -286,7 +286,7 @@
 		upload: function() {
 			return {
 				ajax: function(el, file) {
-					this.$messagedroparea.text(this.contentDropAreaProgress);
+					this.$messagedroparea.html(this.contentDropAreaProgress);
 					var action = el.core.action();
 
 					var form_data = new FormData();
@@ -321,7 +321,7 @@
 				},
 				jqueryForm: function(el) {
 					this.build.form();
-					this.$messagedroparea.text(this.contentDropAreaProgress);
+					this.$messagedroparea.html(this.contentDropAreaProgress);
 
 					this.$form.ajaxForm({
 						beforeSend: function() {
