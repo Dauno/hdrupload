@@ -174,6 +174,7 @@
 					this.$elementerror = this.build.elementError();
 					this.$progressbar = this.build.progressBar();
 					this.$messagedroparea = this.build.messageDropArea();
+					this.$textMessagedroparea = this.$messagedroparea.html();
 
 					if (this.core.isDraggable()) {
 						this.build.drag(this,this.opts.classes);
@@ -367,8 +368,10 @@
 					el.$progressbar.html('Error');
 					setTimeout(function(){
 						el.build.progressBarPercent(0);
+						el.$messagedroparea.html(el.$textMessagedroparea);
 						el.$element.parent().removeClass(el.opts.classes.dragDrop);
 						el.$element.parent().removeClass(el.opts.classes.loaded);
+						el.$element.parent().removeClass(el.opts.classes.loading);
 					}, 3000);
 					setInterval(function(){
 						if (el.$element.parent().hasClass(el.opts.classes.loaded)) {
