@@ -244,7 +244,7 @@
 					return $(this.opts.progressBar);
 				},
 				changeForm: function(el) {
-					el.$element.on('change','input' , function() {
+					el.$element.on('change','input[type="file"]' , function() {
 						el.$element.parent().removeClass(el.opts.classes.loaded).addClass(el.opts.classes.loading);
 						el.upload.jqueryForm(el);
 					});
